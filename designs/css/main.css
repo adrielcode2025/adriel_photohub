@@ -1,0 +1,557 @@
+/* =========================================
+   1. VARIABLES & RESET
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Open+Sans:wght@300;400;600&display=swap');
+
+:root {
+    /* NEW COLOR PALETTE: Dark Gray + Soft Pink + White */
+    --color-primary: #333333;   /* Dark Gray (Elegant text, strong contrast) */
+    --color-secondary: #FFFFFF; /* Pure White (Backgrounds) */
+    --color-accent: #D48C92;    /* Soft Pink (Dusty Rose - Romantic & Minimal) */
+    --color-bg-alt: #FAFAFA;    /* Very Light Gray (For section separation) */
+    
+    /* Text Colors */
+    --color-text-dark: #333333; 
+    --color-text-light: #FFFFFF; 
+    
+    /* Spacing */
+    --spacing-sm: 10px;
+    --spacing-md: 20px;
+    --spacing-lg: 50px; /* Increased spacing for minimal look */
+    --spacing-xl: 80px;
+    
+    /* Layout */
+    --max-width: 1100px; /* Slightly narrower for a curated feel */
+    --header-height: 80px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300; /* Lighter font weight for elegance */
+    line-height: 1.8; /* More line height for airy feel */
+    color: var(--color-text-dark);
+    background-color: var(--color-secondary);
+}
+
+/* =========================================
+   2. TYPOGRAPHY
+   ========================================= */
+h1, h2, h3, h4, strong {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400; /* Not too bold */
+    margin-bottom: var(--spacing-md);
+    color: var(--color-primary);
+    letter-spacing: 1px; /* Open spacing */
+}
+
+h1 { font-size: 2.8rem; line-height: 1.2; font-weight: 300; }
+h2 { font-size: 2rem; position: relative; display: inline-block; }
+h3 { font-size: 1.4rem; }
+
+/* Minimal underline decoration for H2 */
+h2::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background-color: var(--color-accent);
+    margin: 15px auto 0 auto;
+}
+
+p {
+    margin-bottom: var(--spacing-md);
+    max-width: 750px;
+    color: #555;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-accent);
+}
+
+/* =========================================
+   3. UTILITY CLASSES (Mapped to New Colors)
+   ========================================= */
+/* Legacy: 'theme-dark-green' now renders as DARK GRAY */
+.theme-dark-green {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+}
+
+/* Legacy: 'theme-dark-green' text handling */
+.theme-dark-green h1, 
+.theme-dark-green h2, 
+.theme-dark-green p,
+.theme-dark-green strong {
+    color: var(--color-secondary);
+}
+.theme-dark-green h2::after { background-color: var(--color-secondary); }
+
+/* Legacy: 'theme-warm-beige' now renders as SOFT PINK TINT or OFF-WHITE */
+.theme-warm-beige {
+    background-color: #FFF0F2; /* Very faint pink background */
+    color: var(--color-primary);
+}
+
+.text-warm-beige {
+    color: var(--color-secondary);
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #eaeaea; /* Very light gray divider */
+    margin: 0;
+}
+
+/* =========================================
+   4. HEADER & NAVIGATION
+   ========================================= */
+/* We use !important here to override the 'theme-dark-green' class 
+   that might still be in your HTML file */
+header, header.theme-dark-green {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    height: var(--header-height);
+    background-color: #ffffff !important; /* Force White Background */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #f0f0f0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+header div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: var(--color-primary) !important; /* Force Dark Text */
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+header nav a {
+    color: var(--color-primary) !important; /* Force Dark Text */
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid transparent;
+}
+
+header nav a:hover {
+    color: var(--color-accent) !important; /* Pink on Hover */
+    border-bottom: 1px solid var(--color-accent);
+}
+
+/* Mobile Menu Button Override */
+.mobile-menu-btn {
+    color: var(--color-primary) !important; /* Ensures the hamburger icon is Dark */
+}
+
+
+/* =========================================
+   5. LAYOUT & SECTIONS
+   ========================================= */
+main {
+    width: 100%;
+    margin: 0 auto;
+}
+
+section {
+    padding: var(--spacing-xl) 5%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Center content for minimal feel */
+    text-align: center;
+}
+
+/* Full width background wrapper hack */
+.theme-dark-green, .theme-warm-beige {
+    width: 100%;
+    max-width: 100%;
+}
+
+.theme-dark-green > *, .theme-warm-beige > * {
+    max-width: var(--max-width);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* =========================================
+   6. COMPONENTS (Buttons & UI)
+   ========================================= */
+
+/* Buttons - Soft Pink, Minimal */
+button, .btn-primary, a[href="booking.html"] {
+    display: inline-block;
+    background-color: var(--color-accent); 
+    color: #fff;
+    padding: 14px 40px;
+    border-radius: 30px; /* Soft, pill-shaped buttons */
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(212, 140, 146, 0.3); /* Soft pink shadow */
+}
+
+/* Button hover state */
+button:hover, .btn-primary:hover, a[href="booking.html"]:hover {
+    background-color: #c0787e; /* Slightly darker pink */
+    transform: translateY(-2px);
+    color: #fff;
+    box-shadow: 0 6px 15px rgba(212, 140, 146, 0.5);
+}
+
+/* Specific override for section links */
+section#hero a, section#cta a, section#portfolio-cta a {
+    text-decoration: none;
+    background-color: var(--color-accent);
+    color: #fff;
+    padding: 14px 40px;
+    border-radius: 30px;
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0; /* Minimalist = Sharp edges usually, or very soft */
+    display: block;
+}
+
+/* Hero Section */
+#hero, #portfolio-hero, #contact-hero, #about-hero {
+    text-align: center;
+    padding: 100px 20px;
+}
+
+#hero img {
+    margin-top: 50px;
+    max-height: 550px;
+    object-fit: cover;
+    width: 100%;
+    /* Minimalist styling for hero image */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05); 
+}
+
+/* =========================================
+   7. GALLERIES & GRIDS
+   ========================================= */
+#portfolio > div, #gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px; /* Increased gap */
+    margin-top: 40px;
+    width: 100%;
+}
+
+figure {
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: #fff;
+}
+
+figure img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    filter: grayscale(20%); /* Slight desaturation for elegance */
+}
+
+figure:hover img {
+    transform: scale(1.03);
+    filter: grayscale(0%); /* Full color on hover */
+}
+
+figcaption {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* =========================================
+   8. FORMS (Minimalist)
+   ========================================= */
+form {
+    background-color: #fff;
+    padding: 60px;
+    border-radius: 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    max-width: 800px;
+    margin: 0 auto;
+    border: 1px solid #f0f0f0;
+}
+
+form label {
+    font-weight: 600;
+    color: var(--color-primary);
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+form input, form select, form textarea {
+    width: 100%;
+    padding: 15px 0; /* Bottom border style */
+    border: none;
+    border-bottom: 1px solid #ddd;
+    background-color: transparent;
+    border-radius: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+form input:focus, form select:focus, form textarea:focus {
+    outline: none;
+    border-bottom: 1px solid var(--color-accent); /* Focus turns line Pink */
+}
+
+form button {
+    width: auto; /* Allow natural width */
+    min-width: 200px;
+    background-color: var(--color-primary); /* Dark Gray button for forms */
+    color: #fff;
+    margin-top: 30px;
+}
+
+form button:hover {
+    background-color: var(--color-accent);
+}
+
+/* =========================================
+   9. FOOTER
+   ========================================= */
+footer {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #fff; /* White footer for clean look */
+    color: var(--color-primary);
+    border-top: 1px solid #eee;
+}
+
+footer p {
+    margin: 0 auto 20px auto;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+footer nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 25px;
+    padding: 0;
+}
+
+footer nav a {
+    color: var(--color-primary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+footer nav a:hover {
+    color: var(--color-accent);
+}
+
+/* =========================================
+   10. RESPONSIVE DESIGN
+   ========================================= */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+    }
+    header div { margin-bottom: 20px; }
+    header nav ul { flex-direction: column; gap: 15px; text-align: center; }
+    h1 { font-size: 2.2rem; }
+    form { padding: 30px 20px; }
+    section { padding: 50px 5%; }
+}
+
+/* =========================================
+   11. STATS SECTION (Minimalist)
+   ========================================= */
+.stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.stat-box {
+    border: 1px solid #eee; /* Very subtle border */
+    padding: 40px 30px;
+    width: 260px;
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    border-color: var(--color-accent); /* Border becomes Pink on hover */
+}
+
+.stat-box img {
+    margin: 0 auto 20px auto;
+    opacity: 0.7; /* Softer icons */
+}
+
+.stat-number {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 300; /* Light weight numbers */
+    color: var(--color-accent); /* Pink numbers */
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+}
+
+/* =========================================
+   12. TESTIMONIAL SLIDER STYLES
+   ========================================= */
+.testimonial-grid {
+    display: block;
+    position: relative;
+    max-width: 800px;
+    margin: 40px auto 0 auto;
+    min-height: 300px;
+}
+
+.testimonial-card {
+    display: none;
+    background-color: #fff;
+    padding: 50px;
+    /* No border, just whitespace */
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.testimonial-card.active { opacity: 1; }
+
+.testimonial-card .quote {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    font-weight: 300;
+    color: #444;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.testimonial-card .client-name {
+    font-weight: 600;
+    color: var(--color-primary);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.testimonial-card .client-role {
+    font-size: 0.8rem;
+    color: var(--color-accent); /* Pink accent */
+    font-style: italic;
+}
+
+/* Slider Buttons - Minimal Arrows */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none; /* No border for minimal look */
+    color: #ccc; /* Light gray arrows */
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.slider-btn:hover {
+    color: var(--color-accent); /* Pink on hover */
+}
+
+.prev-btn { left: -40px; }
+.next-btn { right: -40px; }
+
+@media (max-width: 768px) {
+    .slider-btn { top: auto; bottom: -40px; transform: none; }
+    .prev-btn { left: 30%; }
+    .next-btn { right: 30%; }
+    .testimonial-grid { margin-bottom: 60px; }
+}
+
+/* =========================================
+   OVERRIDE: MAKE NAV BOOKING LINK PLAIN TEXT
+   ========================================= */
+header nav a[href="booking.html"] {
+    background-color: transparent !important;
+    color: var(--color-primary) !important; /* Matches Dark Gray Text */
+    padding: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    font-weight: 600 !important;
+    display: inline !important;
+}
+
+/* Add the hover underline effect like other links */
+header nav a[href="booking.html"]:hover {
+    background-color: transparent !important;
+    color: var(--color-accent) !important; /* Pink on hover */
+    transform: none !important;
+    border-bottom: 1px solid var(--color-accent) !important;
+    box-shadow: none !important;
+}
